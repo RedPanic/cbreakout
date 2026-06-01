@@ -13,7 +13,7 @@ int main(void){
 	SetTargetFPS(T_FPS);
     GameState* state = create_game_state(BRICK_COUNT);
     Ball *ball = new_ball((Vector2){WIN_WIDTH/2, WIN_HEIGHT/2}, (Vector2){1, 1}, RED, 20);
-    Paddle *paddle = new_paddle((Vector2){WIN_WIDTH/2, WIN_HEIGHT - 20}, WHITE, 100);
+    Paddle *paddle = new_paddle((Vector2){WIN_WIDTH/2, WIN_HEIGHT - 20}, WHITE, PADDLE_WIDTH);
     Brick **bricks = createBricks(state->bricks);
     
 
