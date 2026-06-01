@@ -1,0 +1,9 @@
+#define WIN_WIDTH 1024
+#define WIN_HEIGHT 720
+#define T_FPS 60
+#define PADDLE_SPEED 5
+#define BALL_SPEED 4
+#define BRICK_COUNT 40
+#define BRICK_WIDTH 32
+#define BRICK_SPACE 20
+#define BRICK_STARTING_POINT 80

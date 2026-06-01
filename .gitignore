@@ -1,0 +1,22 @@
+# build artifacts
+*.o
+*.d
+*.exe
+*.obj
+*.a
+*.lib
+*.exp
+*.map
+*.pdb
+*.ilk
+
+# editor
+.vscode/
+.idea/
+*~
+*.swp
+*.swo
+
+# windows
+Thumbs.db
+Desktop.ini
