@@ -4,6 +4,8 @@
 #define PADDLE_SPEED 5
 #define PADDLE_WIDTH 100
 #define BALL_SPEED 4
+#define BALL_WIDTH 20
+#define COLS 10
 #define BRICK_COUNT 40
 #define BRICK_WIDTH 60
 #define BRICK_SPACE 20
