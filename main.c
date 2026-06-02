@@ -9,7 +9,7 @@
 
 
 int main(void){
-	InitWindow(WIN_WIDTH, WIN_HEIGHT, "C Breakout @micpos");
+	InitWindow(WIN_WIDTH, WIN_HEIGHT, "C Breakout by @micpos");
 	SetTargetFPS(T_FPS);
     GameState* state = create_game_state(BRICK_COUNT);
     Paddle *paddle = new_paddle(RAYWHITE, PADDLE_WIDTH);
