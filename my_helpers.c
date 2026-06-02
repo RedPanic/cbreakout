@@ -5,7 +5,7 @@ Brick **createBricks(int amount)
     Brick **bricks = malloc(amount * sizeof(Brick));
     for (int i = 0; i < amount; i++)
     {
-        bricks[i] = new_brick((Vector2){(i % COLS) * (BRICK_SPACE + BRICK_WIDTH + BRICK_SPACE), (BRICK_STARTING_POINT + ((i / COLS) * amount))}, GREEN, BRICK_WIDTH);
+        bricks[i] = new_brick((Vector2){(i % COLS) * (BRICK_SPACE + BRICK_WIDTH + BRICK_SPACE), (BRICK_STARTING_POINT + ((i / COLS) * amount))}, BRICK_WIDTH);
     }
 
     return bricks;
