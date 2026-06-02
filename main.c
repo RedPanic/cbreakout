@@ -12,8 +12,8 @@ int main(void){
 	InitWindow(WIN_WIDTH, WIN_HEIGHT, "C Breakout @micpos");
 	SetTargetFPS(T_FPS);
     GameState* state = create_game_state(BRICK_COUNT);
-    Paddle *paddle = new_paddle(WHITE, PADDLE_WIDTH);
-    Ball *ball = new_ball(paddle->position, (Vector2){1, -1}, RED, BALL_WIDTH);
+    Paddle *paddle = new_paddle(RAYWHITE, PADDLE_WIDTH);
+    Ball *ball = new_ball(paddle->position, (Vector2){1, -1}, MAROON, BALL_WIDTH);
     Brick **bricks = createBricks(state->bricks);
     
 

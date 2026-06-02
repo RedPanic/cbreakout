@@ -17,6 +17,11 @@ void destroy_brick(Brick* brick) {
 }
 
 Color choose_brick_color() {
-
-    return RED; // Placeholder - replace with actual color selection logic
+    int color_value = GetRandomValue(1, 4);
+    switch (color_value) {
+        case 1: return GREEN;
+        case 2: return YELLOW;
+        case 3: return MAGENTA;
+        default: return DARKBLUE; // Placeholder - replace with actual color selection logic
+    }
 }
