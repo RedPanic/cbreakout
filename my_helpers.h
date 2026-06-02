@@ -15,7 +15,12 @@ void draw_bricks(Brick **bricks, int amount);
 void destroy_bricks(Brick **bricks);
 void do_ball_movement(Ball *ball, Paddle *paddle, Brick **bricks, GameState *state);
 bool check_brick_collisions(Ball *ball, Brick **bricks, GameState *state);
+bool check_paddle_collisions(Ball *ball, Paddle *paddle);
 void draw_lives(const GameState *state);
 void draw_score(const GameState *state);
+void freeze_game(GameState *state, Paddle *paddle, Ball *ball);
+void game_over(GameState *state, Paddle *paddle, Ball *ball);
+
+
 
 #endif

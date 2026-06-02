@@ -12,8 +12,8 @@ int main(void){
 	InitWindow(WIN_WIDTH, WIN_HEIGHT, "C Breakout @micpos");
 	SetTargetFPS(T_FPS);
     GameState* state = create_game_state(BRICK_COUNT);
-    Ball *ball = new_ball((Vector2){WIN_WIDTH/2, WIN_HEIGHT/2}, (Vector2){1, 1}, RED, BALL_WIDTH);
-    Paddle *paddle = new_paddle((Vector2){WIN_WIDTH/2, WIN_HEIGHT - 20}, WHITE, PADDLE_WIDTH);
+    Paddle *paddle = new_paddle(WHITE, PADDLE_WIDTH);
+    Ball *ball = new_ball(paddle->position, (Vector2){1, -1}, RED, BALL_WIDTH);
     Brick **bricks = createBricks(state->bricks);
     
 
@@ -23,24 +23,45 @@ int main(void){
 
         switch(user_input){
             case KEY_LEFT:
-            if(paddle->position.x >= 0) move_paddle(paddle, (Vector2){-10, 0});
+            if(paddle->position.x >= 0 && !state->need_freeze) move_paddle(paddle, (Vector2){-10, 0});
                 break;
             case KEY_RIGHT:
-                if(paddle->position.x + paddle->width <= WIN_WIDTH) move_paddle(paddle, (Vector2){10, 0});
+                if(paddle->position.x + paddle->width <= WIN_WIDTH && !state->need_freeze) move_paddle(paddle, (Vector2){10, 0});
                 break;
+            case KEY_SPACE:
+                if(state->need_freeze){
+                    state->need_freeze = false;
+                }
+                break;
+            case KEY_R:
+            if(state->is_over){
+                state->is_over = false;
+                state->lives = 3;
+                state->score = 0;
+                state->bricks = BRICK_COUNT;
+                freeze_game(state, paddle, ball);
+                destroy_bricks(bricks);
+                bricks = createBricks(state->bricks);
+            }
         }
 
-        do_ball_movement(ball, paddle, bricks, state);
+        if(!state->need_freeze){
+            do_ball_movement(ball, paddle, bricks, state);
+        }
 
         BeginDrawing();
         ClearBackground(BLACK);
         DrawText("C Breakout", 10, 10, 20, WHITE);
-        draw_bricks(bricks, state->bricks);
-        draw_ball(ball);
         draw_lives(state);
         draw_score(state);
+        if(!state->is_over){
+        draw_bricks(bricks, state->bricks);
+        draw_ball(ball);
         DrawRectangle(paddle->position.x, paddle->position.y, paddle->width, 20, paddle->color);
-
+        }else {
+            DrawText("Game Over", WIN_WIDTH / 2 - 180, WIN_HEIGHT / 2 - 40, 80, WHITE);
+            DrawText("Press 'R' to restart", WIN_WIDTH / 2 - 90, WIN_HEIGHT / 2 + 40, 20, WHITE);
+        }
         EndDrawing();
 	}
 

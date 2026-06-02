@@ -8,7 +8,7 @@ GameState* create_game_state(int bricks) {
 		state->score = 0;
 		state->lives = 3;
 		state->is_over = false;
-		state->need_freeze = false;
+		state->need_freeze = true;
 	}
 	return state;
 }

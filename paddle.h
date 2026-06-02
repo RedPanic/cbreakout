@@ -11,7 +11,7 @@ typedef struct Paddle {
 
 }Paddle;
 
-Paddle* new_paddle(Vector2 pos, Color color, int width);
+Paddle* new_paddle(Color color, int width);
 void move_paddle(Paddle* paddle, Vector2 direction);
 void destroy_paddle(Paddle* paddle);
 

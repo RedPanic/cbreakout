@@ -4,7 +4,7 @@
 
 Ball* new_ball(Vector2 pos, Vector2 direction, Color color, int width){
     Ball* ball = (Ball*)malloc(sizeof(Ball));
-    ball->position = pos;
+    ball->position = (Vector2){(pos.x + (PADDLE_WIDTH/2) - (BALL_WIDTH/2)), pos.y - (BALL_WIDTH/2)};
     ball->direction = direction;
     ball->color = color;
     ball->width = width;

@@ -2,9 +2,9 @@
 #include "settings.h"
 
 
-Paddle* new_paddle(Vector2 pos, Color color, int width){
+Paddle* new_paddle(Color color, int width){
     Paddle* paddle = (Paddle*)malloc(sizeof(Paddle));
-    paddle->position = pos;
+    paddle->position = (Vector2){WIN_WIDTH/2 - PADDLE_WIDTH/2, WIN_HEIGHT - PADDLE_HEIGHT};
     paddle->color = color;
     paddle->width = width;
     return paddle;

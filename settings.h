@@ -3,6 +3,7 @@
 #define T_FPS 60
 #define PADDLE_SPEED 5
 #define PADDLE_WIDTH 100
+#define PADDLE_HEIGHT 20
 #define BALL_SPEED 4
 #define BALL_WIDTH 20
 #define COLS 10

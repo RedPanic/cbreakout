@@ -41,12 +41,7 @@ void do_ball_movement(Ball *ball, Paddle *paddle, Brick **bricks, GameState *sta
             ball->direction.x = -ball->direction.x;
         }
 
-        Rectangle pad_rect = (Rectangle){paddle->position.x, paddle->position.y, paddle->width, 20};
-
-        if (CheckCollisionCircleRec(ball->position, (float)ball->width, pad_rect))
-        {
-            ball->direction.y = -ball->direction.y;
-        }
+        check_paddle_collisions(ball, paddle);
 
         if (check_brick_collisions(ball, bricks, state))
         {
@@ -60,17 +55,31 @@ void do_ball_movement(Ball *ball, Paddle *paddle, Brick **bricks, GameState *sta
 
         if (ball->position.y >= WIN_HEIGHT - ball->width)
         {
-            ball->direction.y = -1;
-            ball->direction.x = 1;
-            ball->position.y = paddle->position.y - ball->width;
-            ball->position.x = paddle->position.x;
+            freeze_game(state, paddle, ball);
             state->lives--;
             state->score = 0;
+            if (state->lives <= 0)
+            {
+                game_over(state, paddle, ball);
+            }
+
             return;
         }
 
         move_ball(ball);
     }
+}
+
+bool check_paddle_collisions(Ball *ball, Paddle *paddle)
+{
+    Rectangle pad_rect = (Rectangle){paddle->position.x, paddle->position.y, paddle->width, 20};
+
+    if (CheckCollisionCircleRec(ball->position, (float)ball->width, pad_rect))
+    {
+        ball->direction.y = -ball->direction.y;
+        return true;
+    }
+    return false;
 }
 
 bool check_brick_collisions(Ball *ball, Brick **bricks, GameState *state)
@@ -100,4 +109,24 @@ bool check_brick_collisions(Ball *ball, Brick **bricks, GameState *state)
         }
     }
     return false;
+}
+
+void freeze_game(GameState *state, Paddle *paddle, Ball *ball)
+{
+    state->need_freeze = true;
+    if (paddle)
+    {
+        paddle->position.x = WIN_WIDTH / 2 - PADDLE_WIDTH / 2;
+        if (ball)
+        {
+            ball->position.x = paddle->position.x + PADDLE_WIDTH / 2 - BALL_WIDTH /2;
+            ball->position.y = paddle->position.y - BALL_WIDTH;
+        }
+    }
+}
+
+void game_over(GameState *state, Paddle *paddle, Ball *ball)
+{
+    state->is_over = true;
+    freeze_game(state, paddle, ball);
 }
