@@ -6,6 +6,8 @@ typedef struct GameState{
     char lives;
     int score;
     int bricks;
+    bool is_over;
+    bool need_freeze;
 
 }GameState;
 
